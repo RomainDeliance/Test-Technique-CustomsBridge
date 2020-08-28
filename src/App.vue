@@ -5,7 +5,7 @@
       <v-text-field v-model="rtc" placeholder="Décrivez votre RTC"></v-text-field>
     </v-row>
     <v-row>
-      <v-col v-for="item in data" :key="item.bti_ref">
+      <v-col cols="12" lg="3" md="4" sm="6" v-for="item in data" :key="item.bti_ref">
         <Card :data="item"></Card>
       </v-col>
     </v-row>
