@@ -5,7 +5,9 @@
       <v-text-field v-model="rtc" placeholder="Décrivez votre RTC"></v-text-field>
     </v-row>
     <v-row>
-        <Card></Card>
+      <v-col v-for="item in data" :key="item.bti_ref">
+        <Card :data="item"></Card>
+      </v-col>
     </v-row>
   </v-container>
 </template>
@@ -20,24 +22,33 @@ export default {
       code: "",
       rtc: "",
       test: [],
-    }
-  },
-  watch: {
-    code() {
-      console.log(this.code);
-    },
-    rtc() {
-      console.log(this.rtc);
+      data: {},
     }
   },
   beforeMount() {
-    this.getName();
+    this.display();
+  },
+  watch: {
+    async code() {
+      if (this.code) {
+        const res = await fetch("https://api.customsbridge.ai/ebti?filter_on_code=84198998");
+        const data = await res.json();
+        console.log(data);
+      }
+      console.log(this.data);
+    },
+    rtc() {
+      fetch("https://api.customsbridge.ai/ebti?search")
+      .then(response => response.json())
+      .then(data => (this.data = data));
+      console.log(this.rtc);
+    }
   },
   methods: {
-    async getName() {
-      const res = await fetch('https://api.agify.io/?name=michael');
-      const data = await res.json();
-      this.data = data;
+    display() {
+      fetch("https://api.customsbridge.ai/ebti?limit=100")
+      .then(response => response.json())
+      .then(data => (this.data = data));
     }
   },
   components: {
