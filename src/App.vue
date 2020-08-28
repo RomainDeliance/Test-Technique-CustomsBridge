@@ -29,13 +29,13 @@ export default {
   },
   watch: {
     code() {
-      fetch("https://api.customsbridge.ai/ebti?filter_on_code")
+      fetch("https://api.customsbridge.ai/ebti?filter_on_code=" + this.code)
       .then(response => response.json())
       .then(data => (this.data = data));
       console.log(this.data);
     },
     rtc() {
-      fetch("https://api.customsbridge.ai/ebti?search")
+      fetch("https://api.customsbridge.ai/ebti?search=" + this.rtc)
       .then(response => response.json())
       .then(data => (this.data = data));
       console.log(this.rtc);
@@ -53,6 +53,3 @@ export default {
   }
 }
 </script>
-
-<style>
-</style>

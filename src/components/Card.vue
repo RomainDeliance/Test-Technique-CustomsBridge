@@ -20,8 +20,7 @@
 </template>
 
 <script>
-
-  import CountryFlag from 'vue-country-flag';
+import CountryFlag from 'vue-country-flag';
 
 export default {
   name: 'Card',
