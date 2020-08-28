@@ -4,7 +4,9 @@
       <v-card style="height: 37vh">
         <v-col style="display: flex; align-items: center">
           <country-flag :country="data.issuing_country"></country-flag>
-          <span class="text-truncate">{{data.bti_ref}}</span>
+          <span v-if="data.bti_ref.length < 8">{{data.bti_ref}}</span>
+          <span v-else>{{data.bti_ref.substring(0, 8) + "..."}}</span>
+          <span>{{data.start_date}}</span>
         </v-col>
         <v-divider></v-divider>
         <v-col>

@@ -21,7 +21,6 @@ export default {
     return {
       code: "",
       rtc: "",
-      test: [],
       data: {},
     }
   },
@@ -29,12 +28,10 @@ export default {
     this.display();
   },
   watch: {
-    async code() {
-      if (this.code) {
-        const res = await fetch("https://api.customsbridge.ai/ebti?filter_on_code=84198998");
-        const data = await res.json();
-        console.log(data);
-      }
+    code() {
+      fetch("https://api.customsbridge.ai/ebti?filter_on_code")
+      .then(response => response.json())
+      .then(data => (this.data = data));
       console.log(this.data);
     },
     rtc() {
