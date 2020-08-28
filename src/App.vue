@@ -1,22 +1,33 @@
 <template>
-  <v-container>
-    <HelloWorld></HelloWorld>
+  <v-container style="max-width: inherit; width: 95%;">
     <v-row>
-      <v-col style="border: 1px" cols="12" lg="12" md="6" sm="3">
-        {{data}}
-      </v-col>
+      <v-text-field v-model="code" style="margin-right: 20px" placeholder="Taper votre code nomenclature"></v-text-field>
+      <v-text-field v-model="rtc" placeholder="Décrivez votre RTC"></v-text-field>
+    </v-row>
+    <v-row>
+        <Card></Card>
     </v-row>
   </v-container>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Card from './components/Card.vue'
 
 export default {
   name: 'App',
   data() {
     return {
-      data: {},
+      code: "",
+      rtc: "",
+      test: [],
+    }
+  },
+  watch: {
+    code() {
+      console.log(this.code);
+    },
+    rtc() {
+      console.log(this.rtc);
     }
   },
   beforeMount() {
@@ -30,7 +41,7 @@ export default {
     }
   },
   components: {
-    HelloWorld
+    Card
   }
 }
 </script>
